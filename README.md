@@ -10,3 +10,6 @@ This is a simple laravel todo app that is session based. Once the browser is clo
 5. create the database and migrate.
 6. run the database seeder to generate some task - optional.
 6. php artisan serve and proceed to the url.
+
+# Known Issues
+1. Reopening the browser sometimes still shows the old task, but refreshing the browser fixes this. After waiting for a while after the browser closes, reopening does not cause this issue.
