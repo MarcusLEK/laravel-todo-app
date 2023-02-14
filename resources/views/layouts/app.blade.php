@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,6 +28,14 @@
             @endif
 
             <!-- Page Content -->
+            <div class="py-2">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                        @include('flash::message')
+                    </div>
+                </div>
+            </div>
+
             <main>
                 {{ $slot }}
             </main>

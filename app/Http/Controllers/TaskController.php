@@ -46,13 +46,13 @@ class TaskController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // flash('Error: ' . implode(" ", $validator->errors()->all()))->error();
+            flash('Error: ' . implode(" ", $validator->errors()->all()))->error();
             return back()->withInput($request->input())->withErrors($validator);
         }
 
         Task::create($input);
 
-        // flash()->success('Successfully created task.');
+        flash()->success('Successfully created task.');
         return redirect()->route('tasks.index');
     }
 
@@ -98,6 +98,8 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
+
+        flash()->success('Successfully deleted task.');
 
         return redirect()->route('tasks.index');
     }
