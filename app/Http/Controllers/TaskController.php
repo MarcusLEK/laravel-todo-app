@@ -86,7 +86,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        if ($task->status == Task::STATUS_PENDING) {
+            $task->status = Task::STATUS_COMPLETED;
+        } else {
+            $task->status = Task::STATUS_PENDING;
+        }
+        $task->save();
+
+        flash()->success('Successfully marked task.');
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -102,5 +111,10 @@ class TaskController extends Controller
         flash()->success('Successfully deleted task.');
 
         return redirect()->route('tasks.index');
+    }
+
+    public function updateStatus(Task $task)
+    {
+        //
     }
 }
