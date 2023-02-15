@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
@@ -16,6 +17,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::query();
+
+        $tasks = $tasks->where('session_id', session()->getId());
 
         $tasks = $tasks->latest()->paginate(10)->withQueryString();
 
@@ -50,7 +53,9 @@ class TaskController extends Controller
             return back()->withInput($request->input())->withErrors($validator);
         }
 
-        Task::create($input);
+        Task::create($input + [
+            'session_id' => session()->getId(),
+        ]);
 
         flash()->success('Successfully created task.');
         return redirect()->route('tasks.index');

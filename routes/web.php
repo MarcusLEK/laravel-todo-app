@@ -19,7 +19,7 @@ Route::get('/', function () {
     return redirect('tasks');
 });
 
-Route::resource('tasks', TaskController::class)->middleware('session')->except(['show', 'edit']);
+Route::resource('tasks', TaskController::class)->except(['show', 'edit']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
