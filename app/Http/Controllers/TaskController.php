@@ -117,9 +117,4 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index');
     }
-
-    public function updateStatus(Task $task)
-    {
-        //
-    }
 }
